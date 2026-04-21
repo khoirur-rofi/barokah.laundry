@@ -1,0 +1,28 @@
+@startuml
+header Barokah Laundry
+title Sequence Diagram - Update Status & Hapus
+
+actor Admin
+participant "Riwayat View" as UI
+participant "cucianController" as Ctrl
+participant "Database" as DB
+
+== Update Status Pembayaran ==
+Admin -> UI : Klik "Tandai Lunas"
+UI -> Ctrl : PUT /api/cucian/:id/status
+activate Ctrl
+Ctrl -> DB : UPDATE cucian SET status_pembayaran='sudah'
+DB --> Ctrl : OK
+Ctrl --> UI : Status Diperbarui
+deactivate Ctrl
+
+== Hapus Transaksi ==
+Admin -> UI : Klik "Hapus"
+UI -> Ctrl : DELETE /api/cucian/:id
+activate Ctrl
+Ctrl -> DB : DELETE FROM cucian_detail (FK)
+Ctrl -> DB : DELETE FROM cucian (PK)
+DB --> Ctrl : Success
+Ctrl --> UI : Data Terhapus
+deactivate Ctrl
+@enduml

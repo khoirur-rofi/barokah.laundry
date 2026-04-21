@@ -1,0 +1,27 @@
+@startuml
+header Barokah Laundry
+title Sequence Diagram - Login Admin
+
+actor Admin
+participant "Login View" as UI
+participant "app.js (Auth)" as App
+participant "Database" as DB
+
+Admin -> UI : Masukkan Username & Password
+UI -> App : POST /api/login
+activate App
+
+App -> DB : SELECT * FROM users WHERE username=? AND password=?
+activate DB
+DB --> App : User Data
+deactivate DB
+
+alt Password Cocok
+    App --> UI : JSON { success: true }
+    UI -> Admin : Redirect ke Dashboard
+else Password Salah
+    App --> UI : JSON { success: false }
+    UI -> Admin : Tampilkan Pesan Error
+end
+deactivate App
+@enduml

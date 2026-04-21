@@ -1,0 +1,32 @@
+@startuml
+header Barokah Laundry
+title Sequence Diagram - Tambah Transaksi
+
+actor Admin
+participant "Transaksi View" as UI
+participant "cucianController" as Ctrl
+participant "Database" as DB
+
+Admin -> UI : Input Data Santri & Berat
+Admin -> UI : Tambah Item (Sprei/Selimut dll)
+UI -> Ctrl : POST /api/cucian
+activate Ctrl
+
+Ctrl -> DB : START TRANSACTION
+activate DB
+
+Ctrl -> DB : INSERT INTO cucian (santri_id, berat, total_harga)
+DB --> Ctrl : cucian_id
+
+loop Untuk setiap Item Tambahan
+    Ctrl -> DB : INSERT INTO cucian_detail (cucian_id, nama_item, subtotal)
+end
+
+Ctrl -> DB : COMMIT
+DB --> Ctrl : Success
+deactivate DB
+
+Ctrl --> UI : Response { success: true }
+deactivate Ctrl
+UI -> Admin : Tampilkan Nota / Berhasil
+@enduml

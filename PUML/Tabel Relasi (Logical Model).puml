@@ -1,0 +1,41 @@
+@startuml
+title Tabel Relasi
+hide circle
+
+class "santri" {
+  + id (PK)
+  --
+  nama
+  kamar
+  gender
+}
+
+class "cucian" {
+  + id (PK)
+  # santri_id (FK)
+  --
+  berat
+  total_harga
+  status_pembayaran
+  tanggal_masuk
+}
+
+class "cucian_detail" {
+  + id (PK)
+  # cucian_id (FK)
+  --
+  nama_item
+  harga_satuan
+  subtotal
+}
+
+class "users" {
+  + id (PK)
+  --
+  username
+  password
+}
+
+santri "1" -- "0..*" cucian
+cucian "1" -- "0..*" cucian_detail
+@enduml

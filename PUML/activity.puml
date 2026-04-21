@@ -1,0 +1,60 @@
+@startuml
+skinparam style strictuml
+skinparam DefaultFontSize 11
+skinparam Padding 1
+skinparam Nodesep 10
+skinparam Ranksep 15
+skinparam monochrome true
+
+title Activity Diagram - Barokah Laundry
+
+start
+:Buka Aplikasi;
+
+if (Pilih Menu?) then (Public: Input/Edit)
+  partition "cucianController (Tanpa Login)" {
+    :Isi Form & Cari/Simpan Santri;
+    :Sistem Ambil 'harga_per_kilo' (getHarga);
+    :Hitung Total Biaya;
+    :Simpan ke tabel 'cucian' & 'detail';
+    :Notifikasi Sukses;
+  }
+  stop
+else (Private: Riwayat / Laporan / Profil)
+  partition "Auth Guard (sessionStorage)" {
+    if (isLoggedIn?) then (Tidak)
+      :Redirect ke login.html;
+      repeat :Input Akun Admin;
+        :Validasi tabel 'users' (app.js);
+      repeat while (Data Valid?) is (Tidak)
+      :Set sessionStorage 'isLoggedIn' = true;
+    endif
+  }
+
+  :Akses Halaman Privat;
+  split
+    partition "Menu Riwayat" {
+      :Tampilkan List (getAllCucian);
+      :Update Status / Hapus Data;
+    }
+  split again
+    partition "Menu Laporan (Finansial)" {
+      :Filter Rentang Tanggal;
+      :Hitung Pendapatan (getLaporan);
+      :--- **Fitur Edit Harga** ---;
+      :Update 'harga_per_kilo' (updateHarga);
+      :Simpan ke tabel 'pengaturan';
+    }
+  split again
+    partition "Menu Profil (profil.js)" {
+      :Verify Username/Password Lama;
+      :Update tabel 'users' (PUT);
+      :Hapus Session & Logout;
+      stop
+    }
+  end split
+endif
+
+:Kembali ke Dashboard;
+stop
+@enduml

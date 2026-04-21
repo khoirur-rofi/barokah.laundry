@@ -1,0 +1,20 @@
+@startsalt
+{#
+  **Tabel** | **Nama Kolom** | **Tipe Data** | **Keterangan**
+  **santri** | id | INT (PK) | Auto Increment
+  | nama | VARCHAR(255) | Nama Lengkap Santri
+  | kamar | VARCHAR(50) | Lokasi Kamar
+  | gender | ENUM('L','P') | Jenis Kelamin
+  --
+  **cucian** | id | INT (PK) | ID Transaksi
+  | santri_id | INT (FK) | Relasi ke Tabel Santri
+  | berat | FLOAT | Berat (Kg)
+  | total_harga | INT | Total Biaya
+  | status_pembayaran | VARCHAR(20) | 'sudah' / 'belum'
+  --
+  **cucian_detail** | id | INT (PK) | ID Detail Item
+  | cucian_id | INT (FK) | Relasi ke Tabel Cucian
+  | nama_item | VARCHAR(255) | Nama Item (ex: Sprei)
+  | subtotal | INT | Harga per item
+}
+@endsalt

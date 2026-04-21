@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Federo&family=Arimo:wght@400;700&display=swap');
+
+/* --- VARIABEL WARNA EARTHY & ENERGETIC --- */
+:root {
+    --earthy-teal: #008080;      /* Teal - Warna Utama & Navbar */
+    --energetic-coral: #E2725B;  /* Coral - Tombol & Aksen Penting */
+    --soft-beige: #F5F5DC;       /* Beige - Background Halaman */
+    --text-dark: #1A3C3C;        /* Teal Gelap - Untuk Teks Utama */
+    --white: #ffffff;
+}
+
+/* --- OPTIMASI DATE PICKER --- */
+
+/* Membuat area klik input tanggal lebih luas di HP */
+input[type="date"] {
+    position: relative;
+    min-height: 45px; /* Biar lebih mudah ditekan jari */
+}
+
+/* Mengatur agar teks tanggal terlihat rapi di tengah */
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: transparent;
+    bottom: 0;
+    color: transparent;
+    cursor: pointer;
+    height: auto;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: auto;
+}
+
+/* Penyesuaian khusus untuk mobile agar form tidak goyang saat ditekan */
+@media (max-width: 991.98px) {
+    input[type="date"] {
+        font-size: 0.9rem;
+    }
+}
+
+/* --- DASAR --- */
+body {
+    font-family: 'Arimo', sans-serif;
+    background-color: var(--soft-beige);
+    color: var(--text-dark);
+    margin: 0;
+}
+
+/* --- NAVBAR --- */
+.navbar.bg-primary {
+    background-color: var(--earthy-teal) !important;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    font-family: 'Federo', sans-serif !important;
+    font-size: 1.65rem;
+    color: var(--soft-beige) !important;
+    letter-spacing: 1.5px;
+}
+
+.nav-link {
+    color: rgba(245, 245, 220, 0.8) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--white) !important;
+    font-weight: bold;
+}
+
+/* --- CARD & FORM --- */
+.card {
+    border: none;
+    border-radius: 15px;
+    background-color: var(--white);
+    box-shadow: 0 8px 20px rgba(0, 128, 128, 0.08);
+}
+
+.card h4, .card h5 {
+    color: var(--earthy-teal);
+    font-weight: 700;
+}
+
+.form-control, .form-select {
+    background-color: #fafaf3;
+    border: 2px solid #e0e0d0;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: var(--earthy-teal);
+    box-shadow: 0 0 0 3px rgba(0, 128, 128, 0.15);
+}
+
+/* --- TOMBOL (ENERGETIC CORAL) --- */
+/* Menyamakan btn-primary dan btn-danger agar konsisten */
+.btn-primary, .btn-danger {
+    background-color: var(--energetic-coral) !important;
+    border: none !important;
+    color: var(--white) !important;
+    font-weight: 700;
+    border-radius: 10px;
+    padding: 12px 24px;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: normal;
+}
+
+.btn-primary:hover, .btn-danger:hover {
+    background-color: #c95e4a !important;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(226, 114, 91, 0.4);
+}
+
+.btn-success {
+    background-color: var(--earthy-teal) !important;
+    border: none !important;
+    font-weight: 600;
+    border-radius: 8px;
+}
+
+/* --- RIWAYAT CARD & BADGE --- */
+.border-success { border-left: 6px solid var(--earthy-teal) !important; }
+.border-warning { border-left: 6px solid var(--energetic-coral) !important; }
+
+.bg-light {
+    background-color: rgba(0, 128, 128, 0.08) !important;
+    color: var(--earthy-teal);
+}
+
+.badge.bg-success { background-color: var(--earthy-teal) !important; }
+.badge.bg-warning { background-color: var(--energetic-coral) !important; color: white !important; }
+
+/* --- OPTIMASI DESKTOP (Layar Besar) --- */
+@media (min-width: 992px) {
+    .navbar .btn-danger {
+        height: 38px; /* Mengunci tinggi agar sama dengan nav-link */
+        padding: 0 20px !important;
+        font-size: 0.85rem;
+        margin-left: 15px;
+        align-self: center;
+    }
+}
+
+/* --- OPTIMASI MOBILE (Layar HP/Tablet) --- */
+@media (max-width: 991.98px) {
+    .modal-body .row.g-2 {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important; /* Mencegah tombol turun ke bawah */
+    }
+
+    .modal-body .btn-action {
+        width: 100% !important; /* Tetap 100% tapi di dalam ruang gridnya sendiri */
+        margin-top: 0 !important; /* Menghilangkan paksaan margin yang membuat berantakan */
+        padding: 0 5px !important;
+        font-size: 0.8rem !important; /* Mengecilkan teks agar muat di layar sempit */
+    }
+    .navbar-collapse {
+        background-color: #ffffff;
+        border-radius: 15px;
+        padding: 15px;
+        margin-top: 15px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .navbar .btn-danger {
+        width: 100%;
+        padding: 12px !important;
+        margin-top: 15px;
+        font-size: 1rem;
+    }
+
+    .nav-link {
+        color: var(--text-dark) !important;
+        padding: 12px 15px !important;
+        border-radius: 8px;
+        margin-bottom: 5px;
+    }
+
+    .nav-link.active {
+        background-color: rgba(0, 128, 128, 0.1);
+        color: var(--earthy-teal) !important;
+    }
+
+    /* Tombol Full Width di HP */
+    .btn-primary, .btn-danger {
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    /* Grid Riwayat 2 Kolom */
+    #riwayat-grid {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    #riwayat-grid .card-body { padding: 10px !important; }
+    
+    #riwayat-grid h6 {
+        font-size: 0.85rem !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    #riwayat-grid small, #riwayat-grid .small { font-size: 0.7rem !important; }
+    #riwayat-grid .badge { font-size: 0.6rem !important; }
+    #riwayat-grid .btn-sm { font-size: 0.7rem !important; padding: 5px; }
+}
+
+.btn-action {
+    height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+    white-space: nowrap !important;
+}
+
+/* Override khusus untuk tombol outline agar tidak terlalu tebal bordernya */
+.btn-outline-danger.btn-action {
+    border: 2px solid var(--energetic-coral) !important;
+    color: var(--energetic-coral) !important;
+    background-color: transparent !important;
+}
+
+.btn-outline-danger.btn-action:hover {
+    background-color: var(--energetic-coral) !important;
+    color: var(--white) !important;
+}

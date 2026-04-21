@@ -1,0 +1,90 @@
+@startuml
+skinparam classAttributeIconSize 0
+skinparam monochrome true
+skinparam shadowing false
+skinparam ranksep 20
+skinparam nodesep 20
+
+title Class Diagram - Barokah Laundry
+
+' --- Kelompok Controller & Route (Logika Sistem) ---
+package "Controller & API (app.js)" {
+    class santriController {
+        +searchSantri(search)
+    }
+
+    class cucianController {
+        ' Akses Publik
+        +createCucian(data)
+        +updateCucian(id, data)
+        +getCucianById(id)
+        ' Akses Privat (Admin Only)
+        +getAllCucian(filter)
+        +updateStatus(id, status)
+        +getLaporan(range)
+        +hapusCucian(id)
+        +getHarga()
+        +updateHarga(baru)
+    }
+
+    class authController {
+        +login(username, password)
+        +updateAdminProfile(old, new)
+    }
+}
+
+' --- Kelompok Frontend (Logika Client-Side) ---
+package "Frontend Logic" {
+    class sessionManager {
+        +sessionStorage: isLoggedIn
+        +checkAuth()
+        +logout()
+    }
+}
+
+' --- Kelompok Entitas / Model (Struktur Database) ---
+package "Entities (Database Schema)" {
+    class User {
+        -id: int
+        -username: string
+        -password: string
+    }
+
+    class Santri {
+        -id: int
+        -nama: string
+        -kamar: string
+        -gender: string
+    }
+
+    class Cucian {
+        -id: int
+        -santri_id: int
+        -berat: float
+        -total_harga: int
+        -status_pembayaran: string
+    }
+
+    class CucianDetail {
+        -id: int
+        -cucian_id: int
+        -nama_item: string
+        -subtotal: int
+    }
+
+    class Pengaturan {
+        -nama_pengaturan: string
+        -nilai: string
+    }
+}
+
+' --- Hubungan Antar Kelas ---
+authController ..> User : "validasi akun"
+cucianController ..> Cucian : "manajemen transaksi"
+cucianController ..> Pengaturan : "update harga per kilo"
+cucianController ..> CucianDetail : "rincian item"
+Cucian "0..*" -- "1" Santri : "atas nama"
+Cucian "1" *-- "0..*" CucianDetail : "memiliki"
+sessionManager ..> authController : "panggil API"
+
+@enduml

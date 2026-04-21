@@ -1,0 +1,38 @@
+@startuml
+title ERD - Barokah Laundry
+hide circle
+skinparam linetype ortho
+
+entity "User" as user {
+  * username
+  * password
+}
+
+entity "Santri" as santri {
+  * nama
+  * kamar
+  * gender
+}
+
+entity "Cucian" as cucian {
+  * tanggal_masuk
+  * berat
+  * total_harga
+  * status_pembayaran
+}
+
+entity "Cucian_Detail" as detail {
+  * nama_item
+  * harga_satuan
+  * subtotal
+}
+
+entity "Pengaturan" as setting {
+  * nama_pengaturan
+  * nilai
+}
+
+santri ||--o{ cucian : "Memiliki"
+cucian ||--|{ detail : "Berisi"
+user ..> cucian : "Mengelola"
+@enduml
