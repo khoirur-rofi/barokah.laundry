@@ -137,7 +137,7 @@ app.get('/api/cucian', async (req, res) => {
 });
 
 // Route untuk menghapus data cucian
-app.delete('/cucian/:id', (req, res) => {
+app.delete('/api/cucian/:id', (req, res) => {
     const { id } = req.params;
 
     // Hapus detailnya dulu karena ada relasi Foreign Key
@@ -158,7 +158,10 @@ app.delete('/cucian/:id', (req, res) => {
 app.use('/api/santri', santriRoutes);
 
 // --- START SERVER ---
-const PORT = 3000;
+app.get('/', (req, res) => {
+    res.send('API Barokah Laundry jalan 🚀');
+});
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Server Barokah Laundry berjalan di http://localhost:${PORT}`);
+    console.log(`Server Barokah Laundry berjalan di port ${PORT}`);
 });
