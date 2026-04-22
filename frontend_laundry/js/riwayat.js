@@ -21,7 +21,7 @@ async function loadData() {
 
     // 2. DEFINISIKAN VARIABEL URL (Penting agar tidak error)
     // BASE_URL biasanya didefinisikan di api.js
-    const url = `${BASE_URL}/cucian?kamar=${encodeURIComponent(kamar)}&tgl_mulai=${mulai}&tgl_selesai=${selesai}`;
+    const url = `${BASE_URL}/api/cucian?kamar=${encodeURIComponent(kamar)}&tgl_mulai=${mulai}&tgl_selesai=${selesai}`;
 
     try {
         // Tampilkan loading
