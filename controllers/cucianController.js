@@ -129,7 +129,7 @@ exports.createCucian = async (req, res) => {
 
         // 3. Simpan ke Tabel Cucian
         const [result] = await conn.execute(
-        "INSERT INTO cucian (santri_id, berat, harga_per_kilo, total_kiloan, total_tambahan, total_harga, status_pembayaran) VALUES (?, ?, ?, ?, ?, ?, 'belum', NOW())",
+        "INSERT INTO cucian (santri_id, berat, harga_per_kilo, total_kiloan, total_tambahan, total_harga, status_pembayaran) VALUES (?, ?, ?, ?, ?, ?, 'belum', CURDATE())",
         [santriId, berat, HARGA_PER_KILO, totalKiloan, totalTambahan, totalHarga]
         );
 
