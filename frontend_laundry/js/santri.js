@@ -17,7 +17,7 @@ inputNama.addEventListener('input', async (e) => {
 
     try {
         // Ambil data dari backend
-        const response = await fetch(`${BASE_URL}/santri?search=${keyword}`);
+        const response = await fetch(`${BASE_URL}/api/santri?search=${keyword}`);
         const santriList = await response.json();
 
         // Bersihkan isi saran sebelumnya
