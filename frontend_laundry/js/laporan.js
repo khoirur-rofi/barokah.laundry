@@ -12,7 +12,7 @@ async function loadLaporan() {
 
     try {
         // Cek di console log browser agar kita tahu request dikirim
-        console.log(`Mengirim request: ${BASE_URL}/cucian/laporan?tgl_mulai=${mulai}&tgl_selesai=${selesai}`);
+        console.log(`Mengirim request: ${BASE_URL}/api/cucian/laporan?tgl_mulai=${mulai}&tgl_selesai=${selesai}`);
         
         const res = await fetch(`${BASE_URL}/api/cucian/laporan?tgl_mulai=${mulai}&tgl_selesai=${selesai}`);
         const data = await res.json();
