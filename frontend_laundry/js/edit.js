@@ -10,19 +10,19 @@ let allData = []; // Menyimpan data mentah dari server untuk keperluan filter
 /**
  * Mengambil data dari server dan menampilkannya pertama kali
  */
-async function loadEditData()
+async function loadEditData() {
     try {
         const res = await fetch(`${BASE_URL}/api/cucian`);
         const rawData = await res.json();
         
-        // Filter data: Hanya ambil yang status_pembayarannya BELUM 'sudah'
-        // (Bisa dicek berdasarkan 'belum' atau != 'sudah' tergantung isi database kamu)
+        // Filter: Hanya simpan data yang statusnya belum 'sudah' (belum lunas)
         allData = rawData.filter(t => t.status_pembayaran !== 'belum');
         
         renderGrid(allData);
     } catch (error) {
         console.error("Gagal memuat data grid:", error);
     }
+}
 
 // --- 2. RENDER TAMPILAN (GRID) ---
 
