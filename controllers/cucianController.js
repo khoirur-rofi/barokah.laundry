@@ -7,7 +7,7 @@ exports.getCucianById = async (req, res) => {
         const query = `
             SELECT c.*, s.nama, s.kamar 
             FROM cucian c 
-            JOIN santri s ON c.santri_id = s.id 
+            LEFT JOIN santri s ON c.santri_id = s.id 
             WHERE c.id = ?`;
         const [rows] = await db.execute(query, [id]);
 
