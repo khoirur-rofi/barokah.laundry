@@ -14,7 +14,7 @@ async function loadLaporan() {
         // Cek di console log browser agar kita tahu request dikirim
         console.log(`Mengirim request: ${BASE_URL}/cucian/laporan?tgl_mulai=${mulai}&tgl_selesai=${selesai}`);
         
-        const res = await fetch(`${BASE_URL}/cucian/laporan?tgl_mulai=${mulai}&tgl_selesai=${selesai}`);
+        const res = await fetch(`${BASE_URL}/api/cucian/laporan?tgl_mulai=${mulai}&tgl_selesai=${selesai}`);
         const data = await res.json();
 
         console.log("Data diterima dari Server:", data);
@@ -37,7 +37,7 @@ async function simpanHargaKilo() {
     const harga = document.getElementById('inputHargaKilo').value;
     if (!confirm("Update harga?")) return;
     try {
-        const res = await fetch(`${BASE_URL}/cucian/pengaturan/harga`, {
+        const res = await fetch(`${BASE_URL}/api/cucian/pengaturan/harga`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ harga: harga })
