@@ -56,7 +56,7 @@ formCucian.addEventListener('submit', async (e) => {
     console.log("Data dikirim ke Backend:", payload);
 
     try {
-        console.log("Sedang menghubungi server di:", `${BASE_URL}/cucian`);
+        console.log("Sedang menghubungi server di:", `${BASE_URL}/api/cucian`);
         
         const response = await fetch(`${BASE_URL}/api/cucian`, {
             method: 'POST',
