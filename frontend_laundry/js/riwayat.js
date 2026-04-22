@@ -101,7 +101,7 @@ async function loadData() {
 async function updateStatus(id) {
     if (!confirm("Konfirmasi pelunasan?")) return;
     try {
-        const response = await fetch(`${BASE_URL}/cucian/${id}/status`, {
+        const response = await fetch(`${BASE_URL}/api/cucian/${id}/status`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ status_pembayaran: 'sudah' })
