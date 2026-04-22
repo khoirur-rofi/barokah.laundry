@@ -1,13 +1,11 @@
 const mysql = require('mysql2/promise');
 
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: '', 
-    database: 'barokah_laundry', // Nama disesuaikan dengan gambar
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+    host: process.env.DB_HOST || "shortline.proxy.rlwy.net",
+    user: process.env.DB_USER || "root",
+    password: process.env.DB_PASS || "KYpsnuBMHcdjpHKsCtigYMerATjDRRQP",
+    database: process.env.DB_NAME || "railway",
+    port: process.env.DB_PORT || 14930
 });
 
 module.exports = pool;
