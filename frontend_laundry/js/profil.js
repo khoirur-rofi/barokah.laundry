@@ -14,7 +14,7 @@ document.getElementById('formProfil').onsubmit = async (e) => {
     if (!confirm("Konfirmasi perubahan akses admin? Anda akan diminta login ulang.")) return;
 
     try {
-        const res = await fetch(`${BASE_URL}/admin/update`, {
+        const res = await fetch(`${BASE_URL}/api/admin/update`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
