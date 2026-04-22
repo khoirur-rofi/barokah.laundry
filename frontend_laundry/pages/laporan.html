@@ -101,7 +101,7 @@
         // Fungsi untuk mengambil harga saat halaman pertama kali dibuka
         async function muatHargaSaatIni() {
             try {
-                const res = await fetch(`${BASE_URL}/cucian/pengaturan/harga`);
+                const res = await fetch(`${BASE_URL}/api/cucian/pengaturan/harga`);
                 const data = await res.json();
                 if (data.harga) {
                     document.getElementById('inputHargaKilo').value = data.harga;
