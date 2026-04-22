@@ -1,4 +1,4 @@
-const BASE_URL = 'https://barokah-laundry.bonto.run';
+const BASE_URL = 'https://barokah-laundry.bonto.run/';
 
 function cekLogin() {
     const isLoggedIn = sessionStorage.getItem('isLoggedIn');
