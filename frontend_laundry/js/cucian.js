@@ -58,7 +58,7 @@ formCucian.addEventListener('submit', async (e) => {
     try {
         console.log("Sedang menghubungi server di:", `${BASE_URL}/cucian`);
         
-        const response = await fetch(`${BASE_URL}/cucian`, {
+        const response = await fetch(`${BASE_URL}/api/cucian`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
