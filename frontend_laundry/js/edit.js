@@ -12,7 +12,7 @@ let allData = []; // Menyimpan data mentah dari server untuk keperluan filter
  */
 async function loadEditData() {
     try {
-        const res = await fetch(`${BASE_URL}/cucian`);
+        const res = await fetch(`${BASE_URL}/api/cucian`);
         allData = await res.json();
         renderGrid(allData);
     } catch (error) {
@@ -136,7 +136,7 @@ async function openEditModal(id, nama, kamar, berat) {
     container.innerHTML = '';
 
     try {
-        const res = await fetch(`${BASE_URL}/cucian/${id}`);
+        const res = await fetch(`${BASE_URL}/api/cucian/${id}`);
         const data = await res.json();
         if (data.item_tambahan) {
             data.item_tambahan.forEach(item => tambahBarisItemEdit(item.nama, item.harga));
@@ -167,7 +167,7 @@ document.getElementById('formEditCucian').onsubmit = async (e) => {
     };
 
     try {
-        const res = await fetch(`${BASE_URL}/cucian/${id}`, {
+        const res = await fetch(`${BASE_URL}/api/cucian/${id}`, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(updateData)
@@ -197,7 +197,7 @@ async function hapusCucian(id) {
     }
 
     try {
-        const res = await fetch(`${BASE_URL}/cucian/${id}`, {
+        const res = await fetch(`${BASE_URL}/api/cucian/${id}`, {
             method: 'DELETE'
         });
 
